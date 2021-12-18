@@ -1,0 +1,37 @@
+1) Install Microsoft Windows 10 and Server 2016 (or whatever version you want to use) within Microsoft Azure cloud software.
+2) When installing the server, be sure to find a size that will support 2 NICs (I used D2 v5).
+3) Create a secondary Network Interface Card (NIC) on the Server 2016 machine.
+      Shut down the server VM
+      Go to your server VM, down to Networking
+      Attach Network Interface, name it whatever you want
+      Restart the server VM
+4) In the server VM, go to:
+      Network Settings -> Change Adapter Settings
+      Find the internal NIC and rename it to something like "Internal"
+      Restart
+5) Go back to network settings to set IP address for internal NIC
+      Network Settings -> Change Adapter Options
+      Double-Click Internet Protocol Version 4
+      Select "Use the following IP address"
+      IP: 172.16.0.1
+      Subnet: 255.255.255.0
+      Prefered DNS Server: 127.0.0.1 (Loopback IP)
+6) Install Active Directory Domain Services:
+      In the Server Manager main page, click "Add Roles and Features"
+      Select "Role-based or Feature-based installation"
+      Select the server you wish to install Active Directory Domain Services (I only had 1 option)
+      Check "Active Directory Domain Services" click next
+      Keep pre-set "Features"... next
+      AD DS... next
+      Install
+7) Post-Deployment Configuration
+      Click "Promote this computer to Domain Server
+      Cick "Add new forest"
+      Name it whatever you want (I chose "mydomain.com")
+      Create a password, you won't use it anyway
+      Do NOT check anything under DNS Options... next
+      Additional Options... next
+      Paths... next
+      Review Options... next
+      Install
+8) 
