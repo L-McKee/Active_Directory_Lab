@@ -83,3 +83,4 @@
       In the Server Manager Dashboard, go to Tools -> DHCP
       Click on the DC you created, right click "IPV4" and select "New Scope"
       
+12) 
