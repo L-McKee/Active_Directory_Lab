@@ -82,5 +82,27 @@
       Next, Next, Install
       In the Server Manager Dashboard, go to Tools -> DHCP
       Click on the DC you created, right click "IPV4" and select "New Scope"
+      I named the new scope according to the address space that we will be using (ie: "172.16.0.100-200")
+      Input the range of IP addresses (Start IP: 172.16.0.100 and End IP: 172.16.0.200)
+      Set the lease time (this doesn't really matter to us, pick whatever lease time you wish)
+      Select Yes, configure DHCP options"
+      Type in the Domain Controller's IP address that has NAT configured on it (172.16.0.1 in my example) and click "Add"
+      Type in the Domain Controller's domain name (mydomain.com in my example) in the "Parent Domain" field
+      Skip WINS Servers
+      Check "Yes I want to activate the scope"
+      Finish
+      On the DHCP "Tools" pane, right click the DHCP server, select "Authorize". IPV4 and IPV6 should now have a green check mark next to them, showing they are nwo       active
+
+12) Powershell script to create 1000 user accounts on the server
+      The link for the source code is: https://github.com/joshmadakor1/AD_PS (Thanks to Josh Madakor for creating the original project and for providing source code)
+      This code is a loop that creates usernames based on the "names.txt" file that contains 1000 random user's first and last names
+      Save source code from each file on your desktop in the same folder
+      Open Powershell ISE as administrator
+      Open the powershell script you saved (1_CREATE_USERS.ps1)
+      Enable execution of all scripts by typing "Set-ExecutionPolicy Unrestricted" and hit enter
+      Change your directory to where you saved the "1_CREATE_USERS.ps1" and "names.txt" files
+      Click "Run" or the green play button
+      You can now see all the usernames created in Active Directory Users and Computers (found in Start menu) 
       
-12) 
+13) Connecting Windows 10 VM to the internal network
+      While creating the Windows 10 client, you must change the network connection from "NAT" to the internal NIC from our DHCP sever. I had trouble doing this and I       am not sure if it is becuase, as I found out later, Azure does not support DHCP, or what the issue is. Aside from this, everything else worked.
